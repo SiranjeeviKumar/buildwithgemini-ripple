@@ -84,6 +84,7 @@ from app.image_tools import generate_decision_item_image
 from app.location_tools import fetch_location_info
 from app.rag_tools import consult_knowledge_corpus
 from app.snapshot_tools import generate_reality_snapshot
+from app.video_tools import generate_decision_item_video
 
 schema_manager = A2uiSchemaManager(
     version="0.8",
@@ -121,6 +122,7 @@ a2ui_instruction = schema_manager.generate_system_prompt(
         "- `relationship_social_ripple`: Evaluates impact on partner bandwidth, social life, and travel flexibility.\n"
         "- `generate_reality_snapshot`: Generates a visual contrast snapshot card and uploads it to public Cloud Storage.\n"
         "- `generate_decision_item_image`: Generates an image using gemini-3.1-flash-lite-image in global region, saves to Playground artifacts, and uploads to public Cloud Storage.\n"
+        "- `generate_decision_item_video`: Generates a short video using gemini-omni-flash-preview in global region, saves to Playground artifacts via tool_context.save_artifact, and uploads to public Cloud Storage.\n"
         "- `fetch_location_info`: Queries Zippopotam.us API for Indian PIN code (6-digit) or US ZIP code city, state, coordinates, and cost multiplier.\n"
         "- `consult_knowledge_corpus`: Searches the Project Gutenberg grounded knowledge corpus for relevant background information.\n\n"
         "# Firestore Decision Benchmark Catalog\n"
@@ -173,6 +175,7 @@ root_agent = Agent(
         relationship_social_ripple,
         generate_reality_snapshot,
         generate_decision_item_image,
+        generate_decision_item_video,
         fetch_location_info,
         consult_knowledge_corpus,
     ],
